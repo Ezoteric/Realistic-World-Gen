@@ -48,13 +48,20 @@ import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenStronghold;
+import net.minecraft.world.gen.structure.MapGenScatteredFeature;
+import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
 import net.minecraft.world.gen.structure.MapGenVillage;
+//import rwg.deco.village.ComponentScatteredFeaturePieces1;
+//import rwg.deco.village.MapGenScatteredFeature1;
+//import rwg.deco.village.MapGenVillage1;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+//import rwg.deco.ruins.MapGenHandler;
+import rwg.deco.ruins.*;
 
 public class ChunkGeneratorRealistic implements IChunkProvider
 {
@@ -67,6 +74,7 @@ public class ChunkGeneratorRealistic implements IChunkProvider
     private final MapGenStronghold strongholdGenerator;
     private final MapGenMineshaft mineshaftGenerator;
     private final MapGenVillage villageGenerator;
+    private final MapGenScatteredFeature templeGenerator;
     
     private PerlinNoise perlin;
     private CellNoise cell;
@@ -117,9 +125,10 @@ public class ChunkGeneratorRealistic implements IChunkProvider
         Map m = new HashMap();
         m.put("size", "0");
         m.put("distance", "24");
-        villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(new MapGenVillage(m), VILLAGE);
-		strongholdGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(new MapGenStronghold(), STRONGHOLD);
-		mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(new MapGenMineshaft(), MINESHAFT);
+        villageGenerator = (net.minecraft.world.gen.structure.MapGenVillage) TerrainGen.getModdedMapGen(new net.minecraft.world.gen.structure.MapGenVillage(m), VILLAGE);
+		strongholdGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(new net.minecraft.world.gen.structure.MapGenStronghold(m), STRONGHOLD);
+		mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(new net.minecraft.world.gen.structure.MapGenMineshaft(), MINESHAFT);
+		templeGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(new net.minecraft.world.gen.structure.MapGenScatteredFeature(), SCATTERED_FEATURE);
         
         CanyonColor.init(l);
 
@@ -174,6 +183,7 @@ public class ChunkGeneratorRealistic implements IChunkProvider
         mineshaftGenerator.func_151539_a(this, this.worldObj, cx, cy, blocks);
         strongholdGenerator.func_151539_a(this, this.worldObj, cx, cy, blocks);
         villageGenerator.func_151539_a(this, this.worldObj, cx, cy, blocks);
+        templeGenerator.func_151539_a(this, this.worldObj, cx, cy, blocks);
         
     	long second = System.currentTimeMillis();
 
@@ -500,6 +510,7 @@ public class ChunkGeneratorRealistic implements IChunkProvider
         mineshaftGenerator.generateStructuresInChunk(worldObj, rand, i, j);
         strongholdGenerator.generateStructuresInChunk(worldObj, rand, i, j);
         villageGenerator.generateStructuresInChunk(worldObj, rand, i, j);
+        templeGenerator.generateStructuresInChunk(worldObj, rand, i, j);
         
         boolean gen = false;
 
@@ -775,7 +786,7 @@ public class ChunkGeneratorRealistic implements IChunkProvider
 		                	worldObj.setBlock(sn1 + x, sn3 - 1, sn2 + y, Blocks.ice, 0, 2);
 		                }
 		
-		                if (Blocks.snow_layer.canPlaceBlockAt(worldObj, sn1 + x, sn3, sn2 + y) && b2 != Blocks.ice && b2 != Blocks.water && sn3 > 62)
+		               if (Blocks.snow_layer.canPlaceBlockAt(worldObj, sn1 + x, sn3, sn2 + y) && b2 != Blocks.ice && b2 != Blocks.water && sn3 > 62)
 		                {
 		                	if(b1 != Blocks.snow_layer && b2 != Blocks.packed_ice)
 		                	{
@@ -839,5 +850,6 @@ public class ChunkGeneratorRealistic implements IChunkProvider
 		strongholdGenerator.func_151539_a(this, worldObj, par1, par2, (Block[])null);
 		mineshaftGenerator.func_151539_a(this, worldObj, par1, par2, (Block[])null);
         villageGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
+        templeGenerator.func_151539_a(this, this.worldObj, par1, par2, (Block[])null);
 	}
 }
