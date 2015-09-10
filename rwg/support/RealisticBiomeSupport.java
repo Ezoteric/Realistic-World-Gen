@@ -27,9 +27,9 @@ public class RealisticBiomeSupport extends RealisticBiomeBase
 	public EditBase[] edits;
 	public int editLength;
 	
-	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase[] s, EditBase[] e)
+	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase[] s, EditBase[] e, String name)
 	{
-		super(0, b, RealisticBiomeBase.coastDunes, riverbiome);
+		super(0, b, RealisticBiomeBase.coastDunes, riverbiome, name);
 		customBiome = b;
 		terrain = t;
 		
@@ -47,14 +47,14 @@ public class RealisticBiomeSupport extends RealisticBiomeBase
 		}
 	}
 	
-	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s, EditBase e)
+	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s, EditBase e, String name)
 	{
-		this(b, riverbiome, t, new SurfaceBase[]{s}, e != null ? new EditBase[]{e} : null);
+		this(b, riverbiome, t, new SurfaceBase[]{s}, e != null ? new EditBase[]{e} : null, name);
 	}
 	
-	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
+	public RealisticBiomeSupport(BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s, String name)
 	{
-		this(b, riverbiome, t, s, null);
+		this(b, riverbiome, t, s, null, name);
 	}
 
     @Override
