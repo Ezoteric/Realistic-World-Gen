@@ -30,3 +30,8 @@ http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1281910-
         - Added new biome placement system
         - Improved biome dictionary
         - Added redwood test biome
+
+--------------------------------------------------------------------------------------------------------------------------
+Started to pick this up with a few more people.
+
+Also used code from Jimmies and deleted some stuff.
