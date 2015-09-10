@@ -51,16 +51,13 @@ import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
 import net.minecraft.world.gen.structure.MapGenVillage;
-//import rwg.deco.village.ComponentScatteredFeaturePieces1;
-//import rwg.deco.village.MapGenScatteredFeature1;
-//import rwg.deco.village.MapGenVillage1;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-//import rwg.deco.ruins.MapGenHandler;
+import rwg.deco.ruins.MapGenHandler;
 import rwg.deco.ruins.*;
 
 public class ChunkGeneratorRealistic implements IChunkProvider
