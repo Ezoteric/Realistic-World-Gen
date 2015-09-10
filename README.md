@@ -2,6 +2,13 @@
 
 http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1281910-teds-world-gen-mods-realistic-world-gen-alpha-1-3
 
+## Pickup Project ##
+
+Started to pick this up with a few more people.
+Also used code from Jimmie and deleted some stuff.
+
+I am updated all the files atm**
+
 ## CHANGELOG ##
      
         Version Alpha 1.3 '03-01-2015'
@@ -31,7 +38,4 @@ http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1281910-
         - Improved biome dictionary
         - Added redwood test biome
 
---------------------------------------------------------------------------------------------------------------------------
-Started to pick this up with a few more people.
 
-Also used code from Jimmies and deleted some stuff.
