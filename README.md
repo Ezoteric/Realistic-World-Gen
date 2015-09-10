@@ -7,6 +7,8 @@ http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1281910-
 Started to pick this up with a few more people.
 Also used code from Jimmie and deleted some stuff.
 
+Currently i (Ezo) am trying to get temples to work as they still dont...
+
 
 ## CHANGELOG ##
      
