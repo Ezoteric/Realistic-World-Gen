@@ -9,6 +9,11 @@ Also used code from Jimmie and deleted some stuff.
 
 Currently i (Ezo) am trying to get temples to work as they still dont...
 
+## Credits ##
+Ted
+Choonster
+Jimmie
+Sadris
 
 ## CHANGELOG ##
      
