@@ -5,7 +5,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class RWGBiomes 
 {
 	/*
-	 * These biomes are used for grass/foliage color and entity spawning
+	 * These biome's are used for grass/foliage color and entity spawning
 	 */
 	public static BiomeGenBase baseRiverIce;
 	public static BiomeGenBase baseRiverCold;
@@ -65,7 +65,8 @@ public class RWGBiomes
 			baseTropicalIsland,
 			baseRedwood,
 			baseJungle,
-			baseOasis
+			baseOasis,
+			baseTemperateForest
 		};
 	}
 }
