@@ -2,6 +2,8 @@ package rwg.biomes.realistic.ocean;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -31,7 +33,7 @@ public class RealisticBiomeIslandTropical extends RealisticBiomeBase
 	
 	public RealisticBiomeIslandTropical() 
 	{
-		super(0, RWGBiomes.baseOceanWet);
+		super(0, RWGBiomes.baseTropicalIsland, "rwg_IslandTropical");
 		
 		surface = new SurfaceIslandMountainStone(Blocks.grass, Blocks.dirt, 67, Blocks.sand, 0f);
 	}
@@ -39,7 +41,7 @@ public class RealisticBiomeIslandTropical extends RealisticBiomeBase
     @Override
     public void rDecorate(World world, Random rand, int chunkX, int chunkY, PerlinNoise perlin, CellNoise cell, float strength, float river)
     {
-    	/*
+    	
     	if(rand.nextInt((int)(2f / strength)) == 0)
 		{
 			int j6 = chunkX + rand.nextInt(16) + 8;
@@ -110,28 +112,11 @@ public class RealisticBiomeIslandTropical extends RealisticBiomeBase
 			int k22 = 64 + rand.nextInt(64);
 			int j24 = chunkY + rand.nextInt(16) + 8;
 			(new DecoGrass(Blocks.tallgrass, 1)).generate(world, rand, l19, k22, j24);
-		}*/
+		}
     }
     
     @Override
-    public void rMapGen(Block[] blocks, byte[] metadata, World world, ChunkManagerRealistic cmr, Random mapRand, int baseX, int baseY, int chunkX, int chunkY, PerlinNoise perlin, CellNoise cell, float noise[])
-    {
-        if(baseX % 4 == 0 && baseY % 4 == 0 && mapRand.nextInt(6) == 0)
-        {
-        	float river = cmr.getRiverStrength(baseX * 16, baseY * 16) + 1f;
-        	if(river > 0.98f && cmr.isBorderlessAt(baseX * 16, baseY * 16) && cmr.getNoiseWithRiverOceanAt(baseX * 16, baseY * 16, river, cmr.getOceanValue(baseX * 16, baseY * 16)) > 110f)
-        	{
-	            long i1 = mapRand.nextLong() / 2L * 2L + 1L;
-	            long j1 = mapRand.nextLong() / 2L * 2L + 1L;
-	            mapRand.setSeed((long)chunkX * i1 + (long)chunkY * j1 ^ world.getSeed());
-	
-	            MapVolcano.build(blocks, metadata, world, mapRand, baseX, baseY, chunkX, chunkY, perlin, cell, noise);
-        	}
-        }
-    }
-    
-    @Override
-    public float rNoise(PerlinNoise perlin, CellNoise cell, int x, int y, float ocean, float border, float river)
+    public float rNoise(PerlinNoise perlin, CellNoise cell, int x, int y, float coast, float border, float river)
     {
     	float st = 15f - ((cell.noise(x / 500D, y / 500D, 1D) * 42f) + (perlin.noise2(x / 30f, y / 30f) * 2f));
     	
@@ -154,6 +139,27 @@ public class RealisticBiomeIslandTropical extends RealisticBiomeBase
     }
     
     @Override
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void rMapGen(Block[] blocks, byte[] metadata, World world, ChunkManagerRealistic cmr, Random mapRand, int baseX, int baseY, int chunkX, int chunkY, PerlinNoise perlin, CellNoise cell, float noise[])
+    {
+        if(baseX % 4 == 0 && baseY % 4 == 0 && mapRand.nextInt(6) == 0)
+        {
+        	float river = cmr.getRiverStrength(baseX * 16, baseY * 16) + 1f;
+        	if(river > 0.98f && cmr.isBorderlessAt(baseX * 16, baseY * 16) && cmr.getNoiseWithRiverOceanAt(baseX * 16, baseY * 16, river, cmr.getOceanValue(baseX * 16, baseY * 16)) > 110f)
+        	{
+	            long i1 = mapRand.nextLong() / 2L * 2L + 1L;
+	            long j1 = mapRand.nextLong() / 2L * 2L + 1L;
+	            mapRand.setSeed((long)chunkX * i1 + (long)chunkY * j1 ^ world.getSeed());
+	
+	            MapVolcano.build(blocks, metadata, world, mapRand, baseX, baseY, chunkX, chunkY, perlin, cell, noise);
+        	}
+        }
+    }
+    
+    
+    
+    @Override
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public void rReplace(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, PerlinNoise perlin, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
     {
     	surface.paintTerrain(blocks, metadata, i, j, x, y, depth, world, rand, perlin, cell, noise, river, base);
