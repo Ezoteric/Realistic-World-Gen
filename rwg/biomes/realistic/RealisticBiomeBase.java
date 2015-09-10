@@ -3,7 +3,6 @@ package rwg.biomes.realistic;
 import java.util.Random;
 
 import rwg.api.RWGBiomes;
-import rwg.biomes.realistic.land.*;
 import rwg.biomes.realistic.coast.*;
 import rwg.biomes.realistic.desert.RealisticBiomeDesert;
 import rwg.biomes.realistic.desert.RealisticBiomeDesertMountains;
@@ -13,6 +12,7 @@ import rwg.biomes.realistic.forest.RealisticBiomeDarkRedwood;
 import rwg.biomes.realistic.forest.RealisticBiomeDarkRedwoodPlains;
 import rwg.biomes.realistic.forest.RealisticBiomeWoodHills;
 import rwg.biomes.realistic.forest.RealisticBiomeWoodMountains;
+import rwg.biomes.realistic.land.*;
 import rwg.biomes.realistic.ocean.*;
 import rwg.biomes.realistic.red.RealisticBiomeCanyon;
 import rwg.biomes.realistic.red.RealisticBiomeMesa;
@@ -36,17 +36,21 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import biomesoplenty.api.content.BOPCBiomes;
 
 public class RealisticBiomeBase
 {
 	private static final RealisticBiomeBase[] biomeList = new RealisticBiomeBase[256];
 	private static int nextBiomeID = 0;
 	
+	//TEST ==========================================================================================
 	public static RealisticBiomeBase test = new RealisticBiomeTest();
 	public static RealisticBiomeBase river = new RealisticBiomeTestRiver();
-	
 	public static RealisticBiomeBase ocean = new RealisticBiomeOceanTest();
+//	public static RealisticBiomeBase sea = new RealisticBiomeSeaTest();
 	public static RealisticBiomeBase coast = new RealisticBiomeCoastTest();
+//	public static RealisticBiomeBase deepOcean = new RealisticBiomeDeepOcean();
+//	public static RealisticBiomeBase oceanTrench = new RealisticBiomeOceanTrench();
 	
 	//POLAR =========================================================================================
 	public static RealisticBiomeBase polar = new RealisticBiomePolar();
@@ -106,16 +110,17 @@ public class RealisticBiomeBase
 	
 	//COAST =========================================================================================
 	public static RealisticBiomeBase coastIce = new RealisticBiomeCoastIce();
-	
 	public static RealisticBiomeBase coastColdSlope = new RealisticBiomeCoastColdSlope();
 	public static RealisticBiomeBase coastColdCliff = new RealisticBiomeCoastColdCliff();
 	public static RealisticBiomeBase coastDunes = new RealisticBiomeCoastDunes();
-	
 	public static RealisticBiomeBase coastMangrove = new RealisticBiomeCoastMangrove();
 	public static RealisticBiomeBase coastOasis = new RealisticBiomeCoastOasis();
 	
-	//OCEAN =========================================================================================
+	//ISLAND =========================================================================================
 	public static RealisticBiomeBase islandTropical = new RealisticBiomeIslandTropical();
+	public static RealisticBiomeBase islandTundra = new RealisticBiomeIslandTundra();
+	public static RealisticBiomeBase islandNormal = new RealisticBiomeIslandNormal();
+	
 	
 	// ==============================================================================================
 	
@@ -124,14 +129,17 @@ public class RealisticBiomeBase
 	public final BiomeGenBase baseBiome;
 	public final RealisticBiomeBase beachBiome;
 	public final BiomeGenBase riverBiome;
+
+	public final String name;
 	
-	public RealisticBiomeBase(int sub, BiomeGenBase biome)
+	public RealisticBiomeBase(int sub, BiomeGenBase biome, String name)
 	{
-		this(sub, biome, coastIce, RWGBiomes.baseRiverTemperate);
+		this(sub, biome, coastMangrove, RWGBiomes.baseRiverTemperate, name);
 	}
 	
-	public RealisticBiomeBase(int sub, BiomeGenBase biome, RealisticBiomeBase coast, BiomeGenBase river)
+	public RealisticBiomeBase(int sub, BiomeGenBase biome, RealisticBiomeBase coast, BiomeGenBase river, String biomeName)
 	{
+		name = biomeName;
 		biomeID = nextBiomeID;
 		biomeList[biomeID] = this;
 		nextBiomeID++;
@@ -217,4 +225,11 @@ public class RealisticBiomeBase
     {
     	return 0f;
     }
+
+	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_,
+			Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_,
+			int p_150573_6_, double p_150573_7_) {
+		// TODO Auto-generated method stub
+    		
+	}
 }
