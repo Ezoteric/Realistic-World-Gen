@@ -7,7 +7,6 @@ http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1281910-
 Started to pick this up with a few more people.
 Also used code from Jimmie and deleted some stuff.
 
-I am updated all the files atm**
 
 ## CHANGELOG ##
      
